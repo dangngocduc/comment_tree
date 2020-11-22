@@ -19,6 +19,9 @@ CommentTreeWidget<Comment, Comment>(
          return ...;
       })
 ```
+## Design
+
+![](demo/GUI.png)
 
 ## Demo
 |                             |                             |                             |
