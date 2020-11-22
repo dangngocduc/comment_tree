@@ -1,8 +1,7 @@
 name: comment_tree
-description: A new Flutter package.
+description: Render comment tree like facebook comment - reply.
 version: 0.0.1
-author: dangngocduc
-homepage:
+homepage: https://github.com/dangngocduc/comment_tree
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -11,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider:
+  provider: ^4.3.2+2
 
 dev_dependencies:
   flutter_test:
