@@ -1,6 +1,8 @@
 import 'dart:developer' as developer;
 import 'package:comment_tree/data/comment.dart';
+import 'package:comment_tree/widgets/tree_theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CommentChildWidget extends StatelessWidget {
 
@@ -14,14 +16,12 @@ class CommentChildWidget extends StatelessWidget {
     @required this.avatar,
     @required this.content,
     @required this.avatarRoot,
-  }) {
-    padding = EdgeInsets.only(left: avatarRoot.width + 8.0, bottom: 8, top: 8);
-  }
-
-  EdgeInsets padding;
+  });
 
   @override
   Widget build(BuildContext context) {
+    EdgeInsets padding = EdgeInsets.only(left: avatarRoot.width + 8.0, bottom: 8, top: 8);
+
     return CustomPaint(
       child: Container(
         padding: padding,
@@ -41,6 +41,8 @@ class CommentChildWidget extends StatelessWidget {
         padding: padding,
         avatarRoot: avatarRoot,
         avatarChild: avatar.preferredSize,
+        pathColor: context.watch<TreeThemeData>().lineColor,
+        strokeWidth: context.watch<TreeThemeData>().lineWidth
       ),
     );
   }
@@ -54,10 +56,17 @@ class _Painter extends CustomPainter {
 
   Size avatarRoot;
   Size avatarChild;
+  Color pathColor;
+  double strokeWidth;
+  _Painter({this.isLast, this.padding, this.avatarRoot, this.avatarChild, this.pathColor, this.strokeWidth}) {
+    _paint =  Paint()
+      ..color = pathColor
+      ..style = PaintingStyle.stroke..strokeWidth = strokeWidth
+      ..strokeCap = StrokeCap.round;
+  }
 
-  _Painter({this.isLast, this.padding, this.avatarRoot, this.avatarChild});
+  Paint _paint;
 
-  Paint _paint = Paint()..color = Colors.grey[400]..style = PaintingStyle.stroke..strokeWidth = 2..strokeCap = StrokeCap.round;
   @override
   void paint(Canvas canvas, Size size) {
     Path path = Path();
