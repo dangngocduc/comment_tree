@@ -47,11 +47,19 @@ class _MyHomePageState extends State<MyHomePage> {
             Comment(avatar: 'null', userName: 'null', content: 'A Dart template generator which helps teams generator which helps teams '),
           ],
           avatarRoot: (context, data) => PreferredSize(
-            child: CircleAvatar(radius: 18, backgroundColor: Colors.grey,),
+            child: CircleAvatar(
+              radius: 18,
+              backgroundColor: Colors.grey,
+              backgroundImage: AssetImage('assets/avatar_2.png'),
+            ),
             preferredSize: Size.fromRadius(18),
           ),
           avatarChild: (context, data) => PreferredSize(
-            child: CircleAvatar(radius: 12, backgroundColor: Colors.grey,),
+            child: CircleAvatar(
+              radius: 12,
+              backgroundColor: Colors.grey,
+              backgroundImage: AssetImage('assets/avatar_1.png'),
+            ),
             preferredSize: Size.fromRadius(12),
           ),
           contentChild: (context, data) {
