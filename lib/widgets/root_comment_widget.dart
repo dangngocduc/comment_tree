@@ -1,11 +1,8 @@
-import 'dart:developer' as developer;
-import 'package:comment_tree/data/comment.dart';
 import 'package:comment_tree/widgets/tree_theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RootCommentWidget extends StatelessWidget {
-
   final PreferredSizeWidget avatar;
   final Widget content;
 
@@ -19,7 +16,9 @@ class RootCommentWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             avatar,
-            SizedBox(width: 8,),
+            SizedBox(
+              width: 8,
+            ),
             Expanded(
               child: content,
             )
@@ -36,26 +35,26 @@ class RootCommentWidget extends StatelessWidget {
 }
 
 class RootPainter extends CustomPainter {
-  Size avatar;
-  Paint _paint;
-  Color pathColor;
-  double strokeWidth;
+  Size? avatar;
+  Paint? _paint;
+  Color? pathColor;
+  double? strokeWidth;
   RootPainter(this.avatar, this.pathColor, this.strokeWidth) {
     _paint = Paint()
-      ..color = pathColor
+      ..color = pathColor!
       ..style = PaintingStyle.stroke
-      ..strokeWidth = strokeWidth
+      ..strokeWidth = strokeWidth!
       ..strokeCap = StrokeCap.round;
   }
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawLine(Offset(avatar.width/2, avatar.height), Offset(avatar.width/2, size.height), _paint);
+    canvas.drawLine(Offset(avatar!.width / 2, avatar!.height),
+        Offset(avatar!.width / 2, size.height), _paint!);
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
   }
-
 }
