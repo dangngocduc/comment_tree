@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     'A Dart template generator which helps teams generator which helps teams '),
           ],
           treeThemeData:
-              TreeThemeData(lineColor: Colors.green[500], lineWidth: 3),
+              TreeThemeData(lineColor: Colors.green[500]!, lineWidth: 3),
           avatarRoot: (context, data) => PreferredSize(
             child: CircleAvatar(
               radius: 18,
@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       Text(
                         'dangngocduc',
-                        style: Theme.of(context).textTheme.caption.copyWith(
+                        style: Theme.of(context).textTheme.caption?.copyWith(
                             fontWeight: FontWeight.w600, color: Colors.black),
                       ),
                       SizedBox(
@@ -103,14 +103,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       Text(
                         '${data.content}',
-                        style: Theme.of(context).textTheme.caption.copyWith(
+                        style: Theme.of(context).textTheme.caption?.copyWith(
                             fontWeight: FontWeight.w300, color: Colors.black),
                       ),
                     ],
                   ),
                 ),
                 DefaultTextStyle(
-                  style: Theme.of(context).textTheme.caption.copyWith(
+                  style: Theme.of(context).textTheme.caption!.copyWith(
                       color: Colors.grey[700], fontWeight: FontWeight.bold),
                   child: Padding(
                     padding: EdgeInsets.only(top: 4),
@@ -145,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       Text(
                         'dangngocduc',
-                        style: Theme.of(context).textTheme.caption.copyWith(
+                        style: Theme.of(context).textTheme.caption!.copyWith(
                             fontWeight: FontWeight.w600, color: Colors.black),
                       ),
                       SizedBox(
@@ -153,14 +153,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       Text(
                         '${data.content}',
-                        style: Theme.of(context).textTheme.caption.copyWith(
+                        style: Theme.of(context).textTheme.caption!.copyWith(
                             fontWeight: FontWeight.w300, color: Colors.black),
                       ),
                     ],
                   ),
                 ),
                 DefaultTextStyle(
-                  style: Theme.of(context).textTheme.caption.copyWith(
+                  style: Theme.of(context).textTheme.caption!.copyWith(
                       color: Colors.grey[700], fontWeight: FontWeight.bold),
                   child: Padding(
                     padding: EdgeInsets.only(top: 4),
