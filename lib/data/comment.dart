@@ -1,8 +1,5 @@
-import 'dart:developer' as developer;
-
-import 'package:flutter/material.dart';
-
 class Comment {
+  // ignore: constant_identifier_names
   static const TAG = 'Comment';
 
   String? avatar;
@@ -10,8 +7,8 @@ class Comment {
   String? content;
 
   Comment({
-    @required this.avatar,
-    @required this.userName,
-    @required this.content,
+    required this.avatar,
+    required this.userName,
+    required this.content,
   });
 }
