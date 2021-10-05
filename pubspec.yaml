@@ -1,6 +1,6 @@
 name: comment_tree
 description: Render comment tree like facebook comment - reply.
-version: 0.2.0
+version: 0.3.0
 homepage: https://github.com/dangngocduc/comment_tree
 
 environment:
