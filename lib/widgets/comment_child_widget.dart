@@ -17,13 +17,18 @@ class CommentChildWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final EdgeInsets padding =
-        EdgeInsets.only(left: avatarRoot!.width + 8.0, bottom: 8, top: 8);
+    bool isRTL = Directionality.of(context) == TextDirection.rtl;
+    final EdgeInsets padding = EdgeInsets.only(
+        left: isRTL ? 0 : avatarRoot!.width + 8.0,
+        bottom: 8,
+        top: 8,
+        right: isRTL ? avatarRoot!.width + 8.0 : 0);
 
     return CustomPaint(
       painter: _Painter(
         isLast: isLast!,
         padding: padding,
+        textDirection: Directionality.of(context),
         avatarRoot: avatarRoot,
         avatarChild: avatar!.preferredSize,
         pathColor: context.watch<TreeThemeData>().lineColor,
@@ -50,7 +55,7 @@ class _Painter extends CustomPainter {
   bool isLast = false;
 
   EdgeInsets? padding;
-
+  final TextDirection textDirection;
   Size? avatarRoot;
   Size? avatarChild;
   Color? pathColor;
@@ -58,6 +63,7 @@ class _Painter extends CustomPainter {
 
   _Painter({
     required this.isLast,
+    required this.textDirection,
     this.padding,
     this.avatarRoot,
     this.avatarChild,
@@ -76,21 +82,24 @@ class _Painter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Path path = Path();
-    path.moveTo(avatarRoot!.width / 2, 0);
+    if (textDirection == TextDirection.rtl) canvas.translate(size.width, 0);
+    double rootDx = avatarRoot!.width / 2;
+    if (textDirection == TextDirection.rtl) rootDx *= -1;
+    path.moveTo(rootDx, 0);
     path.cubicTo(
-      avatarRoot!.width / 2,
+      rootDx,
       0,
-      avatarRoot!.width / 2,
+      rootDx,
       padding!.top + avatarChild!.height / 2,
-      avatarRoot!.width,
+      rootDx * 2,
       padding!.top + avatarChild!.height / 2,
     );
     canvas.drawPath(path, _paint);
 
     if (!isLast) {
       canvas.drawLine(
-        Offset(avatarRoot!.width / 2, 0),
-        Offset(avatarRoot!.width / 2, size.height),
+        Offset(rootDx, 0),
+        Offset(rootDx, size.height),
         _paint,
       );
     }

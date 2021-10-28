@@ -15,6 +15,7 @@ class RootCommentWidget extends StatelessWidget {
         avatar.preferredSize,
         context.watch<TreeThemeData>().lineColor,
         context.watch<TreeThemeData>().lineWidth,
+          Directionality.of(context)
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +38,8 @@ class RootPainter extends CustomPainter {
   late Paint _paint;
   Color? pathColor;
   double? strokeWidth;
-  RootPainter(this.avatar, this.pathColor, this.strokeWidth) {
+  final TextDirection textDecoration;
+  RootPainter(this.avatar, this.pathColor, this.strokeWidth, this.textDecoration) {
     _paint = Paint()
       ..color = pathColor!
       ..style = PaintingStyle.stroke
@@ -47,9 +49,14 @@ class RootPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    if(textDecoration == TextDirection.rtl)
+    canvas.translate(size.width, 0);
+    double dx = avatar!.width / 2;
+    if(textDecoration == TextDirection.rtl)
+      dx *= -1;
     canvas.drawLine(
-      Offset(avatar!.width / 2, avatar!.height),
-      Offset(avatar!.width / 2, size.height),
+      Offset(dx, avatar!.height),
+      Offset(dx, size.height),
       _paint,
     );
   }
